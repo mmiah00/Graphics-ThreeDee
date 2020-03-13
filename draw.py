@@ -96,12 +96,7 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
         x0 = x
         y0 = y
         i+= 1
-dimensions = [width, height, depth]
-    ex = x
-    why = y
-    zee = z
-    for i in range (len (dimensions)):
-
+        
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:
         print('Need at least 2 points to draw')
