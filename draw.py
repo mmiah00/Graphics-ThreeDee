@@ -7,7 +7,23 @@ from matrix import *
   # height and depth dimensions.
   # ====================
 def add_box( points, x, y, z, width, height, depth ):
-    pass
+    add_edge (points, x, y, z, x + width, y, z)
+    add_edge (points, x, y, z, x, y + height, z)
+    add_edge (points, x, y, z, x, y, z + depth)
+
+    add_edge (points, x + width, y, z, x + width, y + height, z)
+    add_edge (points, x + width, y, z, x + width, y, z + depth)
+
+    add_edge (points, x + width, y, z + depth, x, y, z + depth)
+    add_edge (points, x + width, y, z + depth, x + width, y + height, z + depth)
+
+    add_edge (points, x + width, y + height, z + depth, x + width, y + height,z)
+    add_edge (points, x + width, y + height, z + depth, x, y + height, z + depth)
+
+    add_edge (point, x, y + height, z + depth, x, y, z + depth)
+    add_edge (point, x, y + height, z + depth, x, y + height, z + depth)
+
+    add_edge (point,x, y + height, depth, x + width, y + height, z)
 
   # ====================
   # Generates all the points along the surface
@@ -80,7 +96,11 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
         x0 = x
         y0 = y
         i+= 1
-
+dimensions = [width, height, depth]
+    ex = x
+    why = y
+    zee = z
+    for i in range (len (dimensions)):
 
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:
