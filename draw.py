@@ -97,7 +97,7 @@ def generate_torus( points, cx, cy, cz, r0, r1, step ):
   # ====================
 def add_torus( points, cx, cy, cz, r0, r1, step ):
     new = new_matrix ()
-    p = generate_torus (new, cx, cy, cz, r, step)
+    p = generate_torus (new, cx, cy, cz, r0, r1, step)
     for point in p:
         x = point[0]
         y = point[1]
