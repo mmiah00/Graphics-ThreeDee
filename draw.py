@@ -7,23 +7,26 @@ from matrix import *
   # height and depth dimensions.
   # ====================
 def add_box( points, x, y, z, width, height, depth ):
-    add_edge (points, x, y, z, x + width, y, z)
-    add_edge (points, x, y, z, x, y + height, z)
-    add_edge (points, x, y, z, x, y, z + depth)
+    a = x + width
+    b = y + height
+    c = z + depth
+    add_edge (points, x, y, z, a, y, z)
+    add_edge (points, x, y, z, x, y, c)
+    add_edge (points, x, y, z, x, b, z)
 
-    add_edge (points, x + width, y, z, x + width, y + height, z)
-    add_edge (points, x + width, y, z, x + width, y, z + depth)
+    add_edge (points, x, y, c, a, y, c)
+    add_edge (points, x, y, c, x, b, c)
 
-    add_edge (points, x + width, y, z + depth, x, y, z + depth)
-    add_edge (points, x + width, y, z + depth, x + width, y + height, z + depth)
+    add_edge (points, a, y, c, a, b, c)
+    add_edge (points, a, y, c, a, y, z)
 
-    add_edge (points, x + width, y + height, z + depth, x + width, y + height,z)
-    add_edge (points, x + width, y + height, z + depth, x, y + height, z + depth)
+    add_edge (points, a, y, z, a, b, z)
 
-    add_edge (point, x, y + height, z + depth, x, y, z + depth)
-    add_edge (point, x, y + height, z + depth, x, y + height, z + depth)
+    add_edge (points, a, b, z, x, b, z)
+    add_edge (points, a, b, z, a, b, c)
 
-    add_edge (point,x, y + height, depth, x + width, y + height, z)
+    add_edge (points, x, b, c, a, b, c)
+    add_edge (points, x, b, c, x, b, z)
 
   # ====================
   # Generates all the points along the surface
@@ -32,7 +35,19 @@ def add_box( points, x, y, z, width, height, depth ):
   # Returns a matrix of those points
   # ====================
 def generate_sphere( points, cx, cy, cz, r, step ):
-    pass
+    theta, phi = 0, 0
+    rotation, circle = 0, 0
+    while (rotation <= 1):
+        while (circle <= 1):
+            x = r * math.cos (theta) + cx
+            y = r * math.sin (theta) * math.cos (phi) + cy
+            z = r * math.sin (theta) * math.sin (phi) + cz
+            add_point (points, x, y, z)
+            theta = math.pi * circle
+            phi = 2 * math.pi * rotation
+            circle += step
+        rotation += step
+    return points
 
   # ====================
   # adds all the points for a sphere with center
@@ -41,7 +56,13 @@ def generate_sphere( points, cx, cy, cz, r, step ):
   # necessary points
   # ====================
 def add_sphere( points, cx, cy, cz, r, step ):
-    pass
+    p = generate_sphere (new_matrix (0,0), cx, cy, cz, r, step)
+    for point in p:
+        x = point[0]
+        y = point[1]
+        z = point[2]
+        add_edge (points, x, y,z, x, y, z)
+
 
 
   # ====================
@@ -96,7 +117,7 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
         x0 = x
         y0 = y
         i+= 1
-        
+
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:
         print('Need at least 2 points to draw')
