@@ -128,5 +128,6 @@ def parse_file( fname, edges, transform, screen, color ):
                 display(screen)
             else:
                 save_extension(screen, args[0])
-
+        elif line == 'clear':
+            del edges[:]
         c+= 1
