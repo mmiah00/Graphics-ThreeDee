@@ -63,7 +63,7 @@ def add_sphere( points, cx, cy, cz, r, step ):
         x = point[0]
         y = point[1]
         z = point[2]
-        add_edge (points, x, y, z, x, y, z)
+        add_edge (points, x, y, z, x + 1, y + 1, z + 1)
 
 
   # ====================
@@ -98,7 +98,7 @@ def add_torus( points, cx, cy, cz, r0, r1, step ):
         x = point[0]
         y = point[1]
         z = point[2]
-        add_edge (points, x, y, z, x, y, z)
+        add_edge (points, x, y, z, x + 1, y + 1, z + 1)
 
 def add_circle( points, cx, cy, cz, r, step ):
     x0 = r + cx
