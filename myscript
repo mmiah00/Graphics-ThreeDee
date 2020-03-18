@@ -1,0 +1,31 @@
+ident
+box
+0 0 0 75 100 75
+box
+75 0 0 75 125 75
+box
+150 0 0 75 75 75
+sphere
+112.5 164.5 0 36.5
+move
+150 0 0
+apply
+display
+save
+pic.png
+
+#ident
+#sphere
+#100 100 100 50
+#box
+#150 100 0 50 50 50
+#torus
+#200 100 0 75 25
+#rotate
+#x 30
+#move
+#20 100 10
+#apply
+#display
+#save
+#pic.png
